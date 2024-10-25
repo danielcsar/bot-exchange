@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "bot-exchange"
+version = "0.0.1"
+description = ""
+authors = ["Daniel Cesar <daniel_csar@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12"
+fastapi = "^0.115.3"
+uvicorn = "^0.32.0"
+mercadopago = "^2.2.3"
+pydantic = "^2.9.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
