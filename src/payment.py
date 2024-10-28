@@ -1,5 +1,3 @@
-import uuid
-
 import mercadopago
 from pydantic import BaseModel, field_validator
 from src.settings import Settings
@@ -28,8 +26,9 @@ class PaymentPixResponse(BaseModel):
 
 
 class GatewayPayment:
-    def __init__(self, repository):
+    def __init__(self, *, repository, settings: Settings):
         self.repository = repository
+        self.settings = settings
 
     def create_payment(self, *, data: PaymentPixRequest) -> PaymentPixResponse:
         user = self.repository.create_user(wallet_address=data.wallet_address)
@@ -47,11 +46,9 @@ class GatewayPayment:
             "payer": {
                 "email": "user1@user.com.br"
             },
-            "external_reference": str(user.id_external)
+            "external_reference": str(user.id_external),
+            "notification_url": self.settings.NOTIFICATION_URL
         }
-
-        # if notification_url:
-        #     payment_data['notification_url'] = notification_url
 
         result = sdk.payment().create(payment_data, request_options)
 

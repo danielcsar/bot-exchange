@@ -58,7 +58,7 @@ def get_health() -> HealthCheck:
 )
 def create_payment(data: PaymentPixRequest):
     repo = Repository(engine=engine)
-    mercadopago = GatewayPayment(repository=repo)
+    mercadopago = GatewayPayment(repository=repo, settings=settings)
 
     payment = mercadopago.create_payment(data=data)
     print(payment)

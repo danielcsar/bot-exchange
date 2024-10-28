@@ -5,5 +5,6 @@ class Settings(BaseSettings):
     ACCESS_TOKEN: str
     DATABASE_NAME: str
     DATABASE_URL: str
+    NOTIFICATION_URL: str
 
     model_config = SettingsConfigDict(env_file=".env")
