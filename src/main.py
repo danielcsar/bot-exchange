@@ -2,6 +2,7 @@ import json
 from contextlib import asynccontextmanager
 from typing import Any, Dict
 
+import requests
 from fastapi import FastAPI, status
 from pydantic import BaseModel
 from sqlalchemy import create_engine
@@ -67,6 +68,17 @@ def create_payment(data: PaymentPixRequest):
 
 @app.post("/notification/{transaction_id}")
 def create_notification(transaction_id: str, data: dict):
+
+    url = settings.BOT_URL
+    headers = {
+        "Authorization": f'Bearer {settings.BOT_API_TOKEN}',
+        "Content-Type": "application/json"
+    }
+    body = {
+        "transaction_id": transaction_id
+    }
+
+    requests.post(url, headers=headers, json=body)
     # data_dict = data.model_dump()
 
     # repo = Repository(engine=engine)
