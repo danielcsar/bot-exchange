@@ -47,7 +47,7 @@ class GatewayPayment:
                 "email": "user1@user.com.br"
             },
             "external_reference": str(user.id_external),
-            "notification_url": self.settings.NOTIFICATION_URL
+            "notification_url": f'{self.settings.NOTIFICATION_URL}/{str(user.id_external)}'
         }
 
         result = sdk.payment().create(payment_data, request_options)

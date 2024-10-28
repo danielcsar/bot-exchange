@@ -65,11 +65,11 @@ def create_payment(data: PaymentPixRequest):
     return payment
 
 
-@app.post("/notification")
-def create_notification(data: ResponseInput):
-    data_dict = data.model_dump()
+@app.post("/notification/{transaction_id}")
+def create_notification(transaction_id: str, data: dict):
+    # data_dict = data.model_dump()
 
-    repo = Repository(engine=engine)
-    repo.create_response(data=data_dict)
-
-    return data_dict
+    # repo = Repository(engine=engine)
+    # repo.create_response(data=data_dict)
+    print(data)
+    return
