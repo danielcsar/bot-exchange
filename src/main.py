@@ -78,7 +78,8 @@ def create_notification(transaction_id: str, data: dict):
         "transaction_id": transaction_id
     }
 
-    requests.post(url, headers=headers, json=body)
+    response = requests.post(url, headers=headers, json=body)
+    print(response)
     # data_dict = data.model_dump()
 
     # repo = Repository(engine=engine)
